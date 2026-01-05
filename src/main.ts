@@ -10,7 +10,7 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('My Portfolio Backend')
     .setDescription('It\'s just a lightweight backend that holds my portfolio datas')
-    .setVersion('1.0')
+    .setVersion('Dev Beta 0.1')
     .addTag('Test Micro')
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
