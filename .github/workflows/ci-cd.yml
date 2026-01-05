@@ -1,26 +1,30 @@
-name: CI Test
+name: CI
 
 on:
-    push:
-        branches: [ "main" ]
-    pull_request:
-        branches: [ "main" ]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Récupération du code
+      - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: 🟢 Setup Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
 
-      - name: 📦 Installer les dépendances
-        run: npm install
+      - name: Install dependencies
+        run: npm ci
 
-      - name: 🧪 Lancer les tests
-        run: npm test
+      - name: Prisma generate
+        run: npx prisma generate
+
+      - name: Build NestJS
+        run: npm run build
